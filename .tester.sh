@@ -17,19 +17,3 @@ else
 fi
 echo ""
 echo "------------------------------------------------------------"
-
-read -r -a EXERCISES <<< `
-find . -name "ex*.c" |
-sed -r 's/[^0-9]//g' |
-tr '\n' ' '
-`
-
-for COUNT in ${EXERCISES[@]}; do
-cat ./*.c | sed -e 's/\/\*.*//g' | sed -e 's/\*\///g' > /tmp/tmp.c
-cc -Wall -Wextra -Werror /tmp/tmp.c
-EXERCISE=`/tmp/a.out`
-rm /tmp/tmp.c /tmp/a.out
-echo -e "
-Exercício $COUNT: ${EXERCISE}
-------------------------------"
-done
