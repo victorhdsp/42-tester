@@ -13,7 +13,7 @@ read -r -a EXERCISES <<< `find . -name "ex*" | sort -n | sed -r 's/[^0-9]//g' | 
 for NUMBER in ${EXERCISES[@]}; do
         if ([ -e ./ex$NUMBER/*.c ]); then
                 cat ./ex$NUMBER/*.c | sed -e 's/\/\*.*//g' | sed -e 's/\*\///g' > /tmp/tmp.c
-                cc -Wall -Wextra -Werror /tmp/tmp.c
+                clang -Wall -Wextra -Werror /tmp/tmp.c
                 echo -n "Ex$NUMBER: "; ./a.out
                 rm /tmp/tmp.c
                 rm a.out
