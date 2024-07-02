@@ -9,7 +9,7 @@ echo "------------------------------------------------------------"
 echo "Resultado do <main>"
 if ([ -e ./*.c ]); then
 	cat ./*.c | sed -e 's/\/\*.*//g' | sed -e 's/\*\///g' > /tmp/tmp.c 
-	cc -Wall -Wextra -Werror /tmp/tmp.c
+	clang -Wall -Wextra -Werror /tmp/tmp.c
 	./a.out
 	rm a.out
 else
