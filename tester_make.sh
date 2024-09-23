@@ -2,16 +2,16 @@
 
 cd __test__
 
-COMPILADOR="gcc";
+COMPILADOR="clang -Wall -Wextra -Werror";
 HEADER_FOLDER="../src/headers/"; #Relativo a pasta de testes.
 C_FOLDER="../src/src"; #Relativo a pasta de testes.
-TEST_SRC="./src"
+TEST_SRC="./src"; #Relativo a pasta de testes.
 
 ALL="unity.o main.o $(ls "$C_FOLDER" | tr "\n" " " | sed -e 's|\.c|\.o|g')"
 
 (
     echo "test: $ALL";
-    echo "	$COMPILADOR -o test $ALL";
+    echo -e "\t$COMPILADOR -o test $ALL";
     echo "";
     echo "unity.o: $TEST_SRC/unity.c";
     echo -e "\t$COMPILADOR -c $TEST_SRC/unity.c -o unity.o";
@@ -26,7 +26,7 @@ ALL="unity.o main.o $(ls "$C_FOLDER" | tr "\n" " " | sed -e 's|\.c|\.o|g')"
     done
     echo "";
     echo "clean:";
-    echo "	rm -f *.o test";
+    echo -e "\trm -f *.o test";
 ) > makefile
 
 make
